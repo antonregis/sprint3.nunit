@@ -2,13 +2,21 @@
 
 **TOOLS/FRAMEWORK USED:**
 - Automation with selenium webdriver using C#
-- NUnit framework
 - Page Object Model
-- Page Factory
 - ExcelDataReader (Data-driven approach)
 - ExtentReports ExtentHtmlReporter
 - ExtentReports Screenshots
 - AutoIT
 - Resource Manager
 
-**TASK: 
+**TASKS:**
+- Manual testing
+- NUnit (using Page Factory)
+- SpecFlow
+- Performance Testing
+- API Testing 
+
+**GROUP MEMBERS:**
+- Renu Kaul
+- Piue Shri
+- Anthony Regis
