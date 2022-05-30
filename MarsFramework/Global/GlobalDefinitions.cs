@@ -33,6 +33,11 @@ namespace MarsFramework.Global
             return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
         }
 
+        public static IWebElement WaitForElementClickable(IWebDriver driver, IWebElement element, int timeOutinSeconds = 10)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
+            return wait.Until(ExpectedConditions.ElementToBeClickable(element));
+        }
 
         public static void WaitFor(string xpath, string description = null) 
         {
