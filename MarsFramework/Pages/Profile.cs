@@ -21,7 +21,7 @@ namespace MarsFramework.Pages
         }
 
         #region  Initialize Web Elements 
-        //Click on Edit button
+        //Click on Edit Availability button
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/i")]
         private IWebElement AvailabilityTimeEdit { get; set; }
 
@@ -37,13 +37,38 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Full Time')]")]
         private IWebElement AvailabilityOptFullTime { get; set; }
 
-        //Click on Edit button
+        //Get Availability Time Value
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span")]
-        private IWebElement AvailabilityTimeValue { get; set; }     
+        private IWebElement AvailabilityTimeValue { get; set; }
+
+        
+        //Click on Edit Hours button        
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/i")]
+        private IWebElement HoursEdit { get; set; }
 
         //Click on Availability Hour dropdown
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[1]/div/div[3]/div")]
+        [FindsBy(How = How.Name, Using = "availabiltyHour")]
         private IWebElement AvailabilityHours { get; set; }
+
+        //Click on Hours option 
+        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Less than 30hours a week')]")]
+        private IWebElement HoursOptionLessThan30PerWeek { get; set; }
+
+        //Click on Hours option 
+        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'More than 30hours a week')]")]
+        private IWebElement HoursOptionMoreThan30PerWeek { get; set; }
+
+        //Click on Hours option 
+        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'As needed')]")]
+        private IWebElement HoursOptionAsNeeded { get; set; }
+
+        //Get Hours Value
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span")]
+        private IWebElement HourseValue { get; set; }
+
+
+
+        //option[contains(text(),'As needed')]
 
         //Click on salary
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[1]/div/div[4]/div")]
@@ -202,10 +227,43 @@ namespace MarsFramework.Pages
             }
         }
 
+        public void SelectHours(string option)
+        {
+            try
+            {
+                HoursEdit.Click();
+                AvailabilityHours.Click();
+                Thread.Sleep(1000);
+
+                if (option == "Less than 30hours a week")
+                {
+                    HoursOptionLessThan30PerWeek.Click();
+                }
+                else if (option == "More than 30hours a week")
+                {
+                    HoursOptionMoreThan30PerWeek.Click();
+                }
+                else if (option == "As needed")
+                {
+                    HoursOptionAsNeeded.Click();
+                }
+
+                //Thread.Sleep(10000);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
         public string GetAvailabilityTimeValue()
         {
             return AvailabilityTimeValue.Text;
         }
 
+        public string GetHoursValue()
+        {
+            return HourseValue.Text;
+        }
     }
 }
