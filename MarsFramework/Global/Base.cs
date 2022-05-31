@@ -74,6 +74,9 @@ namespace MarsFramework.Global
                 test.AddScreenCaptureFromPath(img);
             }
 
+            //string img = SaveScreenShotClass.SaveScreenshot(driver, "Screenshot");
+            //test.AddScreenCaptureFromPath(img);
+
             // Quit browser
             driver.Quit();
         }

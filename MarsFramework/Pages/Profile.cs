@@ -67,12 +67,30 @@ namespace MarsFramework.Pages
         private IWebElement HourseValue { get; set; }
 
 
+        //Click on EditEarn Target
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/i")]
+        private IWebElement EarnTargetEdit { get; set; }
 
-        //option[contains(text(),'As needed')]
+        //Click on Earn Target dropdown
+        [FindsBy(How = How.Name, Using = "availabiltyTarget")]
+        private IWebElement EarnTargetDropdown { get; set; }
 
-        //Click on salary
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[1]/div/div[4]/div")]
-        private IWebElement Salary { get; set; }
+        //Click on Earn Target option         
+        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Less than $500 per month')]")]
+        private IWebElement EarnTargetLessThan500PerMonth { get; set; }
+
+        //Click on Earn Target option 
+        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Between $500 and $1000 per month')]")]
+        private IWebElement EarnTargetBetween500and1000PerMonth { get; set; }
+
+        //Click on Earn Target option 
+        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'More than $1000 per month')]")]
+        private IWebElement EarnTargetMoreThan1000PerMonth { get; set; }
+
+        //Get Hours Value
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span")]
+        private IWebElement EarnTargetValue { get; set; }
+
 
         //Click on Location
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[2]/div/div[2]/div")]
@@ -210,7 +228,7 @@ namespace MarsFramework.Pages
             {
                 AvailabilityTimeEdit.Click();                
                 AvailabilityTime.Click();
-                Thread.Sleep(1000);                
+                Thread.Sleep(2000);                
 
                 if (option == "Part Time")
                 {
@@ -220,6 +238,8 @@ namespace MarsFramework.Pages
                 {
                     AvailabilityOptFullTime.Click();
                 }
+
+                WaitForElement(driver, By.XPath("//div[contains(text(),'Availability updated')]"));
             }
             catch (Exception e)
             {
@@ -233,7 +253,7 @@ namespace MarsFramework.Pages
             {
                 HoursEdit.Click();
                 AvailabilityHours.Click();
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
 
                 if (option == "Less than 30hours a week")
                 {
@@ -248,7 +268,36 @@ namespace MarsFramework.Pages
                     HoursOptionAsNeeded.Click();
                 }
 
-                //Thread.Sleep(10000);
+                WaitForElement(driver, By.XPath("//div[contains(text(),'Availability updated')]"));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        public void SelectEarnTarget(string option)
+        {
+            try
+            {
+                EarnTargetEdit.Click();
+                EarnTargetDropdown.Click();
+                Thread.Sleep(2000);
+
+                if (option == "Less than $500 per month")
+                {
+                    EarnTargetLessThan500PerMonth.Click();
+                }
+                else if (option == "Between $500 and $1000 per month")
+                {
+                    EarnTargetBetween500and1000PerMonth.Click();
+                }
+                else if (option == "More than $1000 per month")
+                {
+                    EarnTargetMoreThan1000PerMonth.Click();
+                }
+
+                WaitForElement(driver, By.XPath("//div[contains(text(),'Availability updated')]"));
             }
             catch (Exception e)
             {
@@ -264,6 +313,11 @@ namespace MarsFramework.Pages
         public string GetHoursValue()
         {
             return HourseValue.Text;
+        }
+
+        public string GetEarnTargetValue()
+        {
+            return EarnTargetValue.Text;
         }
     }
 }
