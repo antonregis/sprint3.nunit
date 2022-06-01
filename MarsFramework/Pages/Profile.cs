@@ -91,6 +91,23 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span")]
         private IWebElement EarnTargetValue { get; set; }
 
+        
+        //Edit Desctiption
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/h3/span")]
+        private IWebElement EditDescription { get; set; }        
+
+        //Add Desctiption
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/div[1]/textarea")]
+        private IWebElement DescriptionTextArea { get; set; }        
+
+        //Click on Save Description Button
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button")]
+        private IWebElement SaveDescription { get; set; }
+
+        //Get Description Value
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/span")]
+        private IWebElement DescriptionValue { get; set; }       
+
 
         //Click on Location
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[2]/div/div[2]/div")]
@@ -212,13 +229,6 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[6]/div/div[2]/div/div/div[3]/input[1]")]
         private IWebElement AddCerti { get; set; }
 
-        //Add Desctiption
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[8]/div/div[2]/div[1]/textarea")]
-        private IWebElement Description { get; set; }
-
-        //Click on Save Button
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[8]/div/div[4]/span/button[1]")]
-        private IWebElement Save { get; set; }
 
         #endregion
 
@@ -305,6 +315,27 @@ namespace MarsFramework.Pages
             }
         }
 
+        public void EnterDescription(string textContent)
+        {
+            try
+            {
+                WaitForPageToLoad();
+                EditDescription.Click();
+                Thread.Sleep(1000);
+
+                DescriptionTextArea.Clear();
+                DescriptionTextArea.SendKeys(textContent);
+                SaveDescription.Click();
+
+                WaitForElement(driver, By.XPath("//div[contains(text(),'Description has been saved successfully')]"));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+
         public string GetAvailabilityTimeValue()
         {
             return AvailabilityTimeValue.Text;
@@ -319,5 +350,10 @@ namespace MarsFramework.Pages
         {
             return EarnTargetValue.Text;
         }
+        public string GetDescriptionValue()
+        {
+            return DescriptionValue.Text;
+        }
     }
+
 }

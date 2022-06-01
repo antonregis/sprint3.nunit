@@ -54,7 +54,7 @@ namespace MarsFramework.Global
 
             if (title == "Profile")
             {
-
+                WaitFor("//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/h3/span", "Description edit button");
             }            
             else if (title == "ServiceListing") // ShareSkill
             {
