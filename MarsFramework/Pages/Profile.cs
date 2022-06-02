@@ -21,6 +21,7 @@ namespace MarsFramework.Pages
         }
 
         #region  Initialize Web Elements 
+        
         //Click on Edit Availability button
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/i")]
         private IWebElement AvailabilityTimeEdit { get; set; }
@@ -29,13 +30,13 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.Name, Using = "availabiltyType")]
         private IWebElement AvailabilityTime { get; set; }
 
-        //Click on Availability Time option Part Time
+        //Click on Availability Time option 
         [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Part Time')]")]
-        private IWebElement AvailabilityOptPartTime { get; set; }
+        private IWebElement AvailabilityOptionPartTime { get; set; }
 
-        //Click on Availability Time option Full Time
+        //Click on Availability Time option 
         [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Full Time')]")]
-        private IWebElement AvailabilityOptFullTime { get; set; }
+        private IWebElement AvailabilityOptionFullTime { get; set; }
 
         //Get Availability Time Value
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span")]
@@ -94,7 +95,7 @@ namespace MarsFramework.Pages
         
         //Edit Desctiption
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/h3/span")]
-        private IWebElement EditDescription { get; set; }        
+        private IWebElement DescriptionEdit { get; set; }        
 
         //Add Desctiption
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/div[1]/textarea")]
@@ -102,7 +103,7 @@ namespace MarsFramework.Pages
 
         //Click on Save Description Button
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/form/div/div/div[2]/button")]
-        private IWebElement SaveDescription { get; set; }
+        private IWebElement DescriptionSave { get; set; }
 
         //Get Description Value
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[3]/div/div/div/span")]
@@ -242,11 +243,11 @@ namespace MarsFramework.Pages
 
                 if (option == "Part Time")
                 {
-                    AvailabilityOptPartTime.Click();
+                    AvailabilityOptionPartTime.Click();
                 }
                 if (option == "Full Time")
                 {
-                    AvailabilityOptFullTime.Click();
+                    AvailabilityOptionFullTime.Click();
                 }
 
                 WaitForElement(driver, By.XPath("//div[contains(text(),'Availability updated')]"));
@@ -320,12 +321,12 @@ namespace MarsFramework.Pages
             try
             {
                 WaitForPageToLoad();
-                EditDescription.Click();
+                DescriptionEdit.Click();
                 Thread.Sleep(1000);
 
                 DescriptionTextArea.Clear();
                 DescriptionTextArea.SendKeys(textContent);
-                SaveDescription.Click();
+                DescriptionSave.Click();
 
                 WaitForElement(driver, By.XPath("//div[contains(text(),'Description has been saved successfully')]"));
             }
