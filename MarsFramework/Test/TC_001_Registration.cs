@@ -19,7 +19,7 @@ namespace MarsFramework.Test
         }
 
         [Test]
-        [Ignore("Skipping test, waiting for code")]
+        [Ignore ("Skipping test, waiting for code")]
         public void TC_001_ValidateRegistration()
         { 
             // Do nothing

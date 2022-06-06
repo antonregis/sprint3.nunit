@@ -11,6 +11,7 @@ namespace MarsFramework.Test
     class TC_004_Profile_Availability : Base
     {        
         [Test]
+        [Category("realtest")]
         public void TC_004_01_CheckIfTheUserIsAbleToSelectTheAvailability()
         {
             // Create Extentreport test, name extracted from current method name

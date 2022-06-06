@@ -66,6 +66,10 @@ namespace MarsFramework.Global
             {
                 WaitFor("//*[@id='listing-management-section']/div[2]/div[1]/div[2]", "Pagination at the bottom page");
             }
+            else if (title == "Search") // Search Results
+            {
+                WaitFor("//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div/div/a/img", "any Profile image");
+            }
             else
             { 
                 // do nothing
