@@ -70,6 +70,11 @@ namespace MarsFramework.Global
             {
                 WaitFor("//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/div[2]/div/div/div/a/img", "any Profile image");
             }
+            else if (title == "ReceivedRequest") // Search Results
+            {
+                Thread.Sleep(3000);
+                WaitFor("//*[@id='received-request-section']/div[2]/div[1]/table/tbody/tr[1]", "first row of Received Requests table");
+            }
             else
             { 
                 // do nothing
