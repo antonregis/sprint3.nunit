@@ -20,13 +20,12 @@ namespace MarsFramework.Test
             {
                 // Arrange
                 ShareSkill ShareSkillObj = new ShareSkill();
-                ManageListings ManageListingsObj = new ManageListings();
                 
                 //Action
                 ShareSkillObj.EnterShareSkill(1);
 
                 // Assertion
-                string resultStatusNotification = ManageListingsObj.GetNotification();
+                string resultStatusNotification = ShareSkillObj.GetNotification();
                 string expectedStatusNotification = "Service Listing Added successfully";
                 Assert.That(resultStatusNotification, Is.EqualTo(expectedStatusNotification));
 

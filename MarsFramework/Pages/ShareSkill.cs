@@ -117,6 +117,13 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Max file size is 2 MB and supported file types are')]")]
         private IWebElement invalidFileTypeNotification { get; set; }
 
+        //Storing the Notification
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(), 'Service Listing Added successfully')]")]
+        private IWebElement notification { get; set; }
+
+        //html/body/div[1]
+        
+
         #endregion
 
 
@@ -159,9 +166,9 @@ namespace MarsFramework.Pages
                 Thread.Sleep(1000);
 
                 ActiveOption.Click();
-                Thread.Sleep(5000);
+                Thread.Sleep(5000);                
                 Save.Click();
-                Thread.Sleep(500);
+                WaitForElement(driver, By.XPath("//div[contains(text(), 'Service Listing Added successfully')]"));
             }
             catch (Exception e) 
             {
@@ -406,6 +413,11 @@ namespace MarsFramework.Pages
         public string GetInvalidFileTypeNotification()
         {
             return invalidFileTypeNotification.Text;
+        }
+
+        public string GetNotification()
+        {
+            return notification.Text;
         }
     }
 }

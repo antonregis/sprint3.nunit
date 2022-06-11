@@ -8,7 +8,7 @@ using System;
 namespace MarsFramework.Test
 {
     [TestFixture]
-    class TC_018_SearchSkills_AllCategories : Base
+    class TC_018_SearchSkills_ByAllCategories : Base
     {        
         [Test]
         public void TC_018_00_CheckIfTheUserIsAbleToSearchByAllCategories()

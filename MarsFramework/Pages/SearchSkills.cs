@@ -38,6 +38,19 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//div[@id='service-search-section']/div[2]/div/section/div/div/div[2]/i")]
         private IWebElement search2 { get; set; }
 
+        //Click on Online
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Online')]")]
+        private IWebElement online { get; set; }
+
+
+        //Click on Onsite
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Onsite')]")]
+        private IWebElement onsite { get; set; }
+
+        //Click on ShowAll
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'ShowAll')]")]
+        private IWebElement showAll { get; set; }
+      
 
         //Category filters
         [FindsBy(How = How.XPath, Using = "//*[@class='item category' and contains(text(),'Graphics & Design')]")] private IWebElement categoryGraphicsDesign { get; set; }
@@ -158,6 +171,38 @@ namespace MarsFramework.Pages
             }
         }
 
+        public void SearchByFilter(string filter)
+        {
+            try
+            {
+                WaitForPageToLoad();
+                search.Click();
+                WaitForPageToLoad();
+
+                if (filter == "Online")
+                {
+                    online.Click();
+                }
+                else if (filter == "Onsite")
+                {
+                    onsite.Click();
+                }
+                else if (filter == "ShowAll")
+                {
+                    showAll.Click();
+                }
+                else 
+                {
+                    Console.WriteLine("Invalid filter");
+                }
+
+                WaitForPageToLoad();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
         public string GetResultSubCategory(string subCategory)
         {
             string result = null;

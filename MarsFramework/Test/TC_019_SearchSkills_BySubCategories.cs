@@ -8,7 +8,7 @@ using System.Threading;
 namespace MarsFramework.Test
 {
     [TestFixture]
-    class TC_019_SearchSkills_SubCategories : Base
+    class TC_019_SearchSkills_BySubCategories : Base
     {        
         [Test]
         [TestCase("test", "Graphics & Design", "Book & Album covers")]
