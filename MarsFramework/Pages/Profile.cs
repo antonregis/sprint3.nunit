@@ -31,11 +31,11 @@ namespace MarsFramework.Pages
         private IWebElement AvailabilityTime { get; set; }
 
         //Click on Availability Time option 
-        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Part Time')]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/select/option[2]")]       
         private IWebElement AvailabilityOptionPartTime { get; set; }
 
         //Click on Availability Time option 
-        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Full Time')]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[2]/div/span/select/option[3]")]
         private IWebElement AvailabilityOptionFullTime { get; set; }
 
         //Get Availability Time Value
@@ -52,15 +52,15 @@ namespace MarsFramework.Pages
         private IWebElement AvailabilityHours { get; set; }
 
         //Click on Hours option 
-        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'Less than 30hours a week')]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select/option[2]")]
         private IWebElement HoursOptionLessThan30PerWeek { get; set; }
 
         //Click on Hours option 
-        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'More than 30hours a week')]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select/option[3]")]
         private IWebElement HoursOptionMoreThan30PerWeek { get; set; }
 
         //Click on Hours option 
-        [FindsBy(How = How.XPath, Using = "//option[contains(text(),'As needed')]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='account-profile-section']/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/select/option[4]")]
         private IWebElement HoursOptionAsNeeded { get; set; }
 
         //Get Hours Value

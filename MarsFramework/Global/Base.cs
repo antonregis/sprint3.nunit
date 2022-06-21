@@ -6,8 +6,9 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
 using System.IO;
+using MarsFramework.Global;
 using static MarsFramework.Global.GlobalDefinitions;
-
+using AventStack.ExtentReports.Reporter;
 
 namespace MarsFramework.Global
 {
@@ -82,5 +83,24 @@ namespace MarsFramework.Global
         }
 
         #endregion
+    }
+}
+
+[SetUpFixture]
+public class SetUpExtentReports
+{
+    [OneTimeSetUp]
+    public void InitializeExtentReports()
+    {
+        // Initialize ExtentReports
+        var htmlReporter = new ExtentHtmlReporter(Base.ReportPath);
+        Base.extent = new ExtentReports();
+        Base.extent.AttachReporter(htmlReporter);
+    }
+    [OneTimeTearDown]
+    public void FlushExtentReports()
+    {
+        // Save Extentereport html file
+        Base.extent.Flush();
     }
 }

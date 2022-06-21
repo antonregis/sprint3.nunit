@@ -75,6 +75,5 @@ namespace MarsFramework.Test
                 test.Log(Status.Info, ex.Message);
             }
         }
-
     }
 }
