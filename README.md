@@ -10,11 +10,8 @@
 - Resource Manager
 
 **TASKS:**
-- Manual testing
+- Created test tonditions, test cases and test steps as basis for manual testing and automation testing. I created only the ones allocated to me (please see 'Mars Test Conditions and Cases .xlsx').
 - NUnit (using Page Factory)
-- SpecFlow
-- Performance Testing
-- API Testing 
 
 **GROUP MEMBERS:**
 - Renu Kaul
