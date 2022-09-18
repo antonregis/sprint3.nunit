@@ -121,8 +121,9 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//div[contains(text(), 'Service Listing Added successfully')]")]
         private IWebElement notification { get; set; }
 
-        //html/body/div[1]
-        
+        [FindsBy(How = How.XPath, Using = "//div[contains(text(), 'Please complete the form correctly.')]")]
+        private IWebElement notificationInvalidEntry { get; set; }
+
 
         #endregion
 
@@ -176,6 +177,103 @@ namespace MarsFramework.Pages
             }
         }
 
+        public void EnterShareSkillInvalidDescription(int testCase)
+        {
+            // Referencing to an excel file and sheet name
+            ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
+            testCase = testCase + 1;
+
+            try
+            {
+                ShareSkillButton.Click();
+                WaitForPageToLoad();
+                Title.SendKeys(ExcelLib.ReadData(testCase, "Title"));
+                Description.SendKeys(ExcelLib.ReadData(testCase, "Description"));
+                CategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Category"));
+                SubCategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Subcategory"));
+                Tags.SendKeys(ExcelLib.ReadData(testCase, "Tags"));
+                Tags.SendKeys(Keys.Enter);
+                ServiceTypeOption(ExcelLib.ReadData(testCase, "Service Type"));
+                LocationTypeOption.Click();
+                StartDateDropDown.SendKeys(ExcelLib.ReadData(testCase, "Start date"));
+                EndDateDropDown.SendKeys(ExcelLib.ReadData(testCase, "End date"));
+                Days.Click();
+                PopulateTimeInfo("start", ExcelLib.ReadData(testCase, "Start time"));
+                PopulateTimeInfo("end", ExcelLib.ReadData(testCase, "End time"));
+                SkillTradeOption.Click();
+                SkillExchange.SendKeys(ExcelLib.ReadData(testCase, "Skill-Exchange"));
+                SkillExchange.SendKeys(Keys.Enter);
+                WorkSample.Click();
+                Thread.Sleep(1000);
+
+                AutoItX3 autoIt = new AutoItX3();
+                string workSampleFile = (ExcelLib.ReadData(testCase, "Work Samples"));
+                autoIt.WinActivate("Open");
+                Thread.Sleep(1000);
+                autoIt.Send(Base.FileUploadPath + workSampleFile);
+                Thread.Sleep(2000);
+                autoIt.Send("{ENTER}");
+                Thread.Sleep(1000);
+
+                ActiveOption.Click();
+                Thread.Sleep(5000);
+                Save.Click();
+                WaitForElement(driver, By.XPath("//div[contains(text(), 'Please complete the form correctly.')]"));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        public void EnterShareSkillInvalidWorkSampleFile(int testCase)
+        {
+            // Referencing to an excel file and sheet name
+            ExcelLib.PopulateInCollection(Base.ExcelPath, "ShareSkill");
+            testCase = testCase + 1;
+
+            try
+            {
+                ShareSkillButton.Click();
+                WaitForPageToLoad();
+                Title.SendKeys(ExcelLib.ReadData(testCase, "Title"));
+                Description.SendKeys(ExcelLib.ReadData(testCase, "Description"));
+                CategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Category"));
+                SubCategoryDropDown.SendKeys(ExcelLib.ReadData(testCase, "Subcategory"));
+                Tags.SendKeys(ExcelLib.ReadData(testCase, "Tags"));
+                Tags.SendKeys(Keys.Enter);
+                ServiceTypeOption(ExcelLib.ReadData(testCase, "Service Type"));
+                LocationTypeOption.Click();
+                StartDateDropDown.SendKeys(ExcelLib.ReadData(testCase, "Start date"));
+                EndDateDropDown.SendKeys(ExcelLib.ReadData(testCase, "End date"));
+                Days.Click();
+                PopulateTimeInfo("start", ExcelLib.ReadData(testCase, "Start time"));
+                PopulateTimeInfo("end", ExcelLib.ReadData(testCase, "End time"));
+                SkillTradeOption.Click();
+                SkillExchange.SendKeys(ExcelLib.ReadData(testCase, "Skill-Exchange"));
+                SkillExchange.SendKeys(Keys.Enter);
+                WorkSample.Click();
+                Thread.Sleep(1000);
+
+                AutoItX3 autoIt = new AutoItX3();
+                string workSampleFile = (ExcelLib.ReadData(testCase, "Work Samples"));
+                autoIt.WinActivate("Open");
+                Thread.Sleep(1000);
+                autoIt.Send(Base.FileUploadPath + workSampleFile);
+                Thread.Sleep(2000);
+                autoIt.Send("{ENTER}");
+                Thread.Sleep(1000);
+
+                ActiveOption.Click();
+                Thread.Sleep(5000);
+                Save.Click();
+                WaitForElement(driver, By.XPath("//div[contains(text(), 'Max file size is 2 MB and supported file types are gif / jpeg / png / jpg / doc(x) / pdf / txt / xls(x)')]"));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
 
         public void EditShareSkill()
         {
@@ -418,6 +516,11 @@ namespace MarsFramework.Pages
         public string GetNotification()
         {
             return notification.Text;
+        }
+
+        public string GetNotificationInvalidEntry()
+        {
+            return notificationInvalidEntry.Text;
         }
     }
 }
