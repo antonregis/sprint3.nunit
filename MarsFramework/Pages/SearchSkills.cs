@@ -31,7 +31,7 @@ namespace MarsFramework.Pages
         private IWebElement search { get; set; }
 
         //Search Input 2
-        [FindsBy(How = How.XPath, Using = "(//input[@type='text'])[2]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='service-search-section']/div[2]/div/section/div/div[1]/div[2]/input")]
         private IWebElement searchTextbox2 { get; set; }
 
         //Click on Search2
@@ -42,7 +42,6 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Online')]")]
         private IWebElement online { get; set; }
 
-
         //Click on Onsite
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Onsite')]")]
         private IWebElement onsite { get; set; }
@@ -50,7 +49,6 @@ namespace MarsFramework.Pages
         //Click on ShowAll
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'ShowAll')]")]
         private IWebElement showAll { get; set; }
-      
 
         //Category filters
         [FindsBy(How = How.XPath, Using = "//*[@class='item category' and contains(text(),'Graphics & Design')]")] private IWebElement categoryGraphicsDesign { get; set; }
@@ -90,6 +88,10 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//div[@id='service-search-section']/div[2]/div/section/div/div/div/div/a/span")]
         private IWebElement allCategoriesResult { get; set; }
 
+        //No result notification
+        [FindsBy(How = How.XPath, Using = "//*[@id='service-search-section']/div[2]/div/section/div/div[2]/div/h3")]
+        private IWebElement noResultNotification { get; set; }
+
         #endregion
 
 
@@ -105,6 +107,23 @@ namespace MarsFramework.Pages
             {
                 Assert.Fail(e.Message);
             }    
+        }
+
+        public void SearchAllCategoriesWithInvalidCharacter()
+        {
+            try
+            {
+                WaitForPageToLoad();
+                driver.Navigate().GoToUrl(ExcelLib.ReadData(2, "Url") + "/Home/Search");
+                WaitForPageToLoad();
+                searchTextbox2.SendKeys("@-$");
+                search2.Click();
+                WaitForElement(driver, By.XPath("//h3[contains(text(), 'No results found, please select a new category!')]"));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
 
         public void SearchBySubCategory(string skillToSearch, string category, string subCategory)
@@ -257,6 +276,11 @@ namespace MarsFramework.Pages
             return allCategoriesResult.Text;
         }
 
+        public string GetNoResultNotification()
+        {
+            return noResultNotification.Text;
+        }
+
         public string GetPlaceholder1()
         {
             return "placeholder";
@@ -266,5 +290,7 @@ namespace MarsFramework.Pages
         {
             return "placeholder";
         }
+
+
     }
 }
