@@ -41,9 +41,9 @@ namespace MarsFramework.Test
         }
 
         [Test]
-        public void TC_013_02_CheckIfTheUserIsAbleToAddShareskillWithMaliciousTitle()
+        public void TC_013_02_CheckIfTheUserIsUnableToAddShareskillWithMaliciousTitle()
         {
-            // Create Extentreport test, name extracted from current method name
+             // Create Extentreport test, name extracted from current method name
             test = extent.CreateTest(System.Reflection.MethodBase.GetCurrentMethod().Name);
 
             try
