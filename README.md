@@ -10,7 +10,7 @@
 - Resource Manager
 
 **TASKS:**
-- Created test tonditions, test cases and test steps as basis for manual testing and automation testing. I created only the ones allocated to me (please see 'Mars Test Conditions and Cases .xlsx').
+- Created test tonditions, test cases and test steps as basis for manual testing and automation testing. I created only the ones allocated to me (please see 'Sprint3 - Manual Testing.xlsx').
 - NUnit (using Page Factory)
 
 **GROUP MEMBERS:**
